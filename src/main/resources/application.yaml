@@ -1,12 +1,14 @@
 spring:
   application:
     name: notificacao-service
-
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
   datasource:
-    url: jdbc:postgresql://localhost:5432/sistema_eventos
+    url: jdbc:postgresql://localhost:5432/notificacao_db
     username: postgres
     password: admin
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,5 +16,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-server:
-  port: 8081
